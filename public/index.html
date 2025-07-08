@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOSAIC - Automatisation intelligente pour entreprises</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/images/mosaiclogo.png">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        mosaic: {
+                            gradient: 'linear-gradient(90deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(90deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(90deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        
+        .counter {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        @media (max-width: 768px) {
+            .counter {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans scroll-smooth" style="background: radial-gradient(ellipse at top, #1c1c1c, #111111);">
+    <!-- Header -->
+    <header class="fixed w-full bg-black bg-opacity-80 backdrop-blur-sm z-50 border-b border-gray-800">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="relative" style="height: 32px; width: 220px;">
+                    <img src="assets/images/mosaiclogo_transparent.png" alt="MOSAIC Logo" style="height: 160px; position: absolute; top: 50%; left: 0; transform: translateY(-50%);">
+                </div>
+                <!-- Language Switch Button -->
+                <button id="language-switch" class="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded-md transition-colors">
+                    <span id="current-flag" class="text-lg">🇫🇷</span>
+                    <span id="current-lang" class="text-sm text-white">FR</span>
+                </button>
+            </div>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#services" class="text-white hover:text-indigo-400 transition-colors" data-lang-fr="Services" data-lang-en="Services">Services</a>
+                <a href="#cas-clients" class="hover:text-gray-300 transition" data-lang-fr="Cas clients" data-lang-en="Case Studies">Cas clients</a>
+                <a href="#methodologie" class="hover:text-gray-300 transition" data-lang-fr="Méthodologie" data-lang-en="Methodology">Méthodologie</a>
+                <a href="#offres" class="hover:text-gray-300 transition" data-lang-fr="Offres" data-lang-en="Pricing">Offres</a>
+                <a href="#contact" class="hover:text-gray-300 transition" data-lang-fr="Contact" data-lang-en="Contact">Contact</a>
+            </nav>
+            <a href="https://calendly.com/sachabrouck/free-audit-first-contact" target="_blank" class="gradient-bg text-white px-6 py-3 rounded-md font-medium hover:opacity-90 transition text-lg" data-lang-key="hero-cta-1">
+                Audit gratuit
+            </a>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-gray-800">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#services" class="hover:text-gray-300 transition" data-lang-fr="Services" data-lang-en="Services">Services</a>
+                <a href="#cas-clients" class="hover:text-gray-300 transition" data-lang-fr="Cas clients" data-lang-en="Case Studies">Cas clients</a>
+                <a href="#methodologie" class="hover:text-gray-300 transition" data-lang-fr="Méthodologie" data-lang-en="Methodology">Méthodologie</a>
+                <a href="#offres" class="hover:text-gray-300 transition" data-lang-fr="Offres" data-lang-en="Pricing">Offres</a>
+                <a href="#contact" class="hover:text-gray-300 transition" data-lang-fr="Contact" data-lang-en="Contact">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 pb-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    <span class="gradient-text" data-lang-key="hero-title-1">Automatisez.</span> <span class="gradient-text" data-lang-key="hero-title-2">Optimisez.</span> <span class="gradient-text" data-lang-key="hero-title-3">Scalez.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-10" data-lang-key="hero-subtitle">
+                    Nous déployons des solutions d'automation sûres et scalables, conçues pour booster vos opérations internes. Vos données restent confidentielles. Votre efficacité devient exponentielle.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="https://calendly.com/sachabrouck/free-audit-first-contact" target="_blank" class="gradient-bg text-white px-6 py-3 rounded-md font-medium hover:opacity-90 transition text-lg" data-lang-key="hero-cta-1">
+                        Audit de sécurité gratuit
+                    </a>
+                    <a href="#cas-clients" class="border border-gray-700 text-white px-6 py-3 rounded-md font-medium hover:bg-gray-900 transition text-lg" data-lang-key="hero-cta-2">
+                        Voir nos cas clients
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI & Impact Section -->
+    <section class="py-20 bg-gradient-to-b from-black to-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16" data-lang-key="roi-title">
+                Impact mesurable dès le premier jour.
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 hover:border-purple-500 transition">
+                    <div class="flex items-center mb-4">
+                        <div class="gradient-bg p-2 rounded-lg mr-4">
+                            <i class="fas fa-clock text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold" data-lang-key="time-saved">Temps économisé</h3>
+                    </div>
+                    <div class="counter text-gradient" id="hours-saved">0</div>
+                    <p class="text-gray-400" data-lang-key="time-saved-desc">Jusqu'à 14 heures économisées par semaine et par équipe.</p>
+                </div>
+                
+                <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 hover:border-blue-500 transition">
+                    <div class="flex items-center mb-4">
+                        <div class="gradient-bg p-2 rounded-lg mr-4">
+                            <i class="fas fa-euro-sign text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold" data-lang-key="roi-timeline">Timeline ROI</h3>
+                    </div>
+                    <div class="counter" id="roi-days">0</div>
+                    <p class="text-gray-400" data-lang-key="roi-timeline-desc">Moins de 21 jours avant rentabilité (ROI).</p>
+                </div>
+                
+                <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 hover:border-pink-500 transition">
+                    <div class="flex items-center mb-4">
+                        <div class="gradient-bg p-2 rounded-lg mr-4">
+                            <i class="fas fa-chart-line text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold" data-lang-key="efficiency-gain">Gain d'efficacité</h3>
+                    </div>
+                    <div class="counter" id="efficiency">0</div>
+                    <p class="text-gray-400" data-lang-key="efficiency-gain-desc">+22 % d'efficacité opérationnelle en moyenne.</p>
+                </div>
+                
+                <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 hover:border-indigo-500 transition">
+                    <div class="flex items-center mb-4">
+                        <div class="gradient-bg p-2 rounded-lg mr-4">
+                            <i class="fas fa-robot text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold" data-lang-key="automated-actions">Actions automatisées</h3>
+                    </div>
+                    <div class="counter" id="automations">0</div>
+                    <p class="text-gray-400" data-lang-key="automated-actions-desc">Plus de 6000 actions exécutées automatiquement chaque jour.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-4" data-lang-key="services-title">
+                Des solutions d'automation pour chaque besoin.
+            </h2>
+            <p class="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto" data-lang-key="services-subtitle">
+                Nous construisons des systèmes d'automation adaptés à vos workflows existants, dans le respect total de votre infrastructure et de vos exigences de sécurité.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1 -->
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 hover:border-blue-500 transition">
+                    <div class="gradient-bg p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-cogs text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" data-lang-key="process-automation">Process Automation</h3>
+                    <p class="text-gray-400 mb-4" data-lang-key="process-automation-desc">
+                        CRM, finance, RH, juridique—nous éliminons les tâches répétitives et boostons la productivité de vos équipes.
+                    </p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 hover:border-purple-500 transition">
+                    <div class="gradient-bg p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-robot text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" data-lang-key="custom-ai-agents">Agents IA personnalisés</h3>
+                    <p class="text-gray-400 mb-4" data-lang-key="custom-ai-agents-desc">
+                        GPT + vos données internes = assistance intelligente pour vos équipes.
+                    </p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 hover:border-pink-500 transition">
+                    <div class="gradient-bg p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-pie text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" data-lang-key="auto-reporting">Auto Reporting</h3>
+                    <p class="text-gray-400 mb-4" data-lang-key="auto-reporting-desc">
+                        Dashboards KPI en PDF, Notion, Power BI—livrés automatiquement aux parties prenantes.
+                    </p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 hover:border-indigo-500 transition">
+                    <div class="gradient-bg p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-plug text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" data-lang-key="api-integration">API Integration</h3>
+                    <p class="text-gray-400 mb-4" data-lang-key="api-integration-desc">
+                        Stripe, Notion, Slack, LinkedIn, Zapier, Webhooks—tout connecté de manière sécurisée.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cas Clients Section -->
+    <section id="cas-clients" class="py-20 bg-gradient-to-b from-gray-900 to-black" style="background: #111111;">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6" data-lang-key="case-studies-title">
+                    Des entreprises ambitieuses nous font confiance.
+                </h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed" data-lang-key="case-studies-subtitle">
+                    Nous servons tous les secteurs avec une approche sur-mesure. Finance, RH, sales, marketing, opérations... Chaque secteur trouve ses solutions d'optimisation chez Mosaic.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+                <!-- Client 1: Prepaya -->
+                <div class="bg-gray-900 rounded-xl p-8 border border-gray-800 hover:border-red-400 transition-all duration-300 h-full flex flex-col group">
+                    <div class="text-center mb-6 pt-4">
+                        <img src="assets/images/prepayalogo.png" alt="Prepaya Logo" class="h-20 mx-auto transition duration-300 object-contain">
+                    </div>
+                    <div class="flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold mb-4 text-center text-red-300 group-hover:text-red-200 transition-colors" data-lang-key="email-automation">
+                            Email Automation & CRM Integration
+                        </h3>
+                        <p class="text-gray-300 mb-6 text-center leading-relaxed flex-grow" data-lang-key="email-automation-desc">
+                            Automation complète des emails et extraction intelligente des données via le CRM.
+                        </p>
+                        <div class="bg-gradient-to-r from-red-500/20 to-red-600/20 p-4 rounded-lg border border-red-500/30">
+                            <div class="text-3xl font-bold text-red-300 text-center mb-1">10h</div>
+                            <p class="text-sm text-gray-300 text-center">heures économisées par semaine</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Client 2: Mantu -->
+                <div class="bg-gray-900 rounded-xl p-8 border border-gray-800 hover:border-purple-400 transition-all duration-300 h-full flex flex-col group">
+                    <div class="text-center mb-6">
+                        <img src="assets/images/mantu_logo_transparent.png" alt="Mantu Logo" class="h-28 mx-auto transition duration-300 object-contain">
+                    </div>
+                    <div class="flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold mb-4 text-center text-purple-300 group-hover:text-purple-200 transition-colors" data-lang-key="hr-data-scraping">
+                            HR Data Scraping & Analytics
+                        </h3>
+                        <p class="text-gray-300 mb-6 text-center leading-relaxed flex-grow" data-lang-key="hr-data-scraping-desc">
+                            Automation du web scraping pour la collecte de données RH et l'intelligence concurrentielle.
+                        </p>
+                        <div class="bg-gradient-to-r from-purple-500/20 to-purple-600/20 p-4 rounded-lg border border-purple-500/30">
+                            <div class="text-3xl font-bold text-purple-300 text-center mb-1">24/7</div>
+                            <p class="text-sm text-gray-300 text-center">surveillance automatisée</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Client 3: Rise4 -->
+                <div class="bg-gray-900 rounded-xl p-8 border border-gray-800 hover:border-green-400 transition-all duration-300 h-full flex flex-col group">
+                    <div class="text-center mb-6">
+                        <img src="assets/images/rise_logo_white_on_transparent.png" alt="Rise4 Logo" class="h-28 mx-auto filter grayscale group-hover:grayscale-0 transition duration-300 object-contain">
+                    </div>
+                    <div class="flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold mb-4 text-center text-gray-300 group-hover:text-green-200 transition-colors" data-lang-key="financial-api">
+                            Financial API & Real-time Analytics
+                        </h3>
+                        <p class="text-gray-300 mb-6 text-center leading-relaxed flex-grow" data-lang-key="financial-api-desc">
+                            Automation des données financières et création d'API interne pour l'analyse en temps réel.
+                        </p>
+                        <div class="bg-gradient-to-r from-gray-500/20 to-gray-600/20 p-4 rounded-lg border border-gray-500/30 group-hover:from-green-500/20 group-hover:to-green-600/20 group-hover:border-green-500/30 transition-all duration-300">
+                            <div class="text-3xl font-bold text-gray-300 text-center mb-1 group-hover:text-green-300 transition-colors">100%</div>
+                            <p class="text-sm text-gray-300 text-center">automatisation des rapports</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Client 4: Grafouniages -->
+                <div class="bg-gray-900 rounded-xl p-8 border border-gray-800 hover:border-pink-400 transition-all duration-300 h-full flex flex-col group">
+                    <div class="text-center mb-6">
+                        <img src="assets/images/grafouniages_logo_white_on_transparent.png" alt="Grafouniages Logo" class="h-28 mx-auto filter grayscale group-hover:grayscale-0 transition duration-300 object-contain">
+                    </div>
+                    <div class="flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold mb-4 text-center text-gray-300 group-hover:text-pink-200 transition-colors" data-lang-key="automated-sales">
+                            Automated Sales Strategy & Lead Gen
+                        </h3>
+                        <p class="text-gray-300 mb-6 text-center leading-relaxed flex-grow" data-lang-key="automated-sales-desc">
+                            Automation complète de la stratégie commerciale avec génération et qualification de leads.
+                        </p>
+                        <div class="bg-gradient-to-r from-gray-500/20 to-gray-600/20 p-4 rounded-lg border border-gray-500/30 group-hover:from-pink-500/20 group-hover:to-pink-600/20 group-hover:border-pink-500/30 transition-all duration-300">
+                            <div class="text-3xl font-bold text-gray-300 text-center mb-1 group-hover:text-pink-300 transition-colors">5x</div>
+                            <p class="text-sm text-gray-300 text-center">plus de leads qualifiés</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section Domaines d'expertise -->
+            <div class="text-center">
+                <h3 class="text-2xl md:text-4xl font-bold mb-12" data-lang-key="domains-title">
+                    Tous les secteurs, une expertise commune.
+                </h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+                    <div class="text-center group">
+                        <div class="gradient-bg p-4 rounded-xl w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-3 text-white group-hover:text-blue-300 transition-colors" data-lang-key="finance">Finance</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-lang-key="finance-desc">Reporting automatisé<br>APIs temps réel<br>Analytics prédictives</p>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="gradient-bg p-4 rounded-xl w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-users text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-3 text-white group-hover:text-purple-300 transition-colors" data-lang-key="human-resources">Ressources Humaines</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-lang-key="human-resources-desc">Recrutement automatisé<br>Intelligence concurrentielle<br>Process RH optimisés</p>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="gradient-bg p-4 rounded-xl w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-handshake text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-3 text-white group-hover:text-green-300 transition-colors" data-lang-key="sales">Sales</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-lang-key="sales-desc">CRM intelligent<br>Lead generation<br>Sales automatisées</p>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="gradient-bg p-4 rounded-xl w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-cogs text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-3 text-white group-hover:text-pink-300 transition-colors" data-lang-key="operations">Opérations</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-lang-key="operations-desc">Workflows automatisés<br>Process optimisés<br>Efficacité maximale</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Méthodologie Section -->
+    <section id="methodologie" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-4" data-lang-key="methodology-title">
+                Une méthodologie en 4 étapes. Rapide. Mesurable. Sécurisée.
+            </h2>
+            <p class="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto" data-lang-key="methodology-subtitle">
+                Une approche structurée pour des résultats rapides et mesurables avec une sécurité enterprise-grade.
+            </p>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Step 1 -->
+                <div class="flex flex-col md:flex-row mb-12">
+                    <div class="md:w-1/4 mb-4 md:mb-0">
+                        <div class="gradient-bg w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl">1</div>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-2xl font-bold mb-2" data-lang-key="free-audit">Audit de sécurité gratuit</h3>
+                        <p class="text-gray-400 mb-4" data-lang-key="free-audit-desc">
+                            Nous analysons vos processus pendant 30 minutes pour identifier les meilleures opportunités d'automation tout en assurant la sécurité des données.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="flex flex-col md:flex-row mb-12">
+                    <div class="md:w-1/4 mb-4 md:mb-0">
+                        <div class="gradient-bg w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl">2</div>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-2xl font-bold mb-2" data-lang-key="process-mapping">Cartographie des processus</h3>
+                        <p class="text-gray-400 mb-4" data-lang-key="process-mapping-desc">
+                            Nous modélisons vos processus existants et concevons les solutions d'automation les plus adaptées avec la sécurité en tête.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="flex flex-col md:flex-row mb-12">
+                    <div class="md:w-1/4 mb-4 md:mb-0">
+                        <div class="gradient-bg w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl">3</div>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-2xl font-bold mb-2" data-lang-key="development-testing">Développement & Tests</h3>
+                        <p class="text-gray-400 mb-4" data-lang-key="development-testing-desc">
+                            Nous implémentons les solutions en étroite collaboration avec vos équipes et validons chaque étape avec des protocoles de sécurité.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/4 mb-4 md:mb-0">
+                        <div class="gradient-bg w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl">4</div>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-2xl font-bold mb-2" data-lang-key="deployment-support">Déploiement & Support</h3>
+                        <p class="text-gray-400 mb-4" data-lang-key="deployment-support-desc">
+                            Nous livrons des solutions clé-en-main et assurons soit le support continu, soit le transfert de compétences à vos équipes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offres Section -->
+    <section id="offres" class="py-20 bg-gradient-to-b from-black to-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-4" data-lang-key="pricing-title">
+                Des solutions sur mesure, un tarif personnalisé.
+            </h2>
+            <p class="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto" data-lang-key="pricing-subtitle">
+                Chaque entreprise est unique. Nos tarifs sont entièrement adaptés à vos objectifs, votre infrastructure et vos besoins en automatisation. Demandez un audit gratuit pour recevoir une proposition personnalisée.
+            </p>
+            
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="bg-gray-900 rounded-xl p-12 border border-gray-800">
+                    <div class="gradient-bg p-6 rounded-full w-24 h-24 mx-auto mb-8 flex items-center justify-center">
+                        <i class="fas fa-cogs text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6" data-lang-key="custom-solutions">Solutions personnalisées</h3>
+                    <p class="text-gray-300 mb-8 text-lg leading-relaxed" data-lang-key="custom-solutions-desc">
+                        Nous analysons vos processus, identifions les opportunités d'automation et concevons une solution sur mesure qui s'intègre parfaitement à votre écosystème existant.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                        <div class="text-center">
+                            <div class="gradient-bg p-4 rounded-xl w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-search text-white text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold mb-2" data-lang-key="audit-phase">Phase d'audit</h4>
+                            <p class="text-gray-400 text-sm" data-lang-key="audit-phase-desc">Analyse approfondie de vos processus et identification des leviers d'optimisation</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="gradient-bg p-4 rounded-xl w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-lightbulb text-white text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold mb-2" data-lang-key="proposal-phase">Proposition</h4>
+                            <p class="text-gray-400 text-sm" data-lang-key="proposal-phase-desc">Solution personnalisée avec planning de déploiement et estimation des gains</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="gradient-bg p-4 rounded-xl w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-rocket text-white text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold mb-2" data-lang-key="deployment-phase">Déploiement</h4>
+                            <p class="text-gray-400 text-sm" data-lang-key="deployment-phase-desc">Implémentation progressive avec support et formation de vos équipes</p>
+                        </div>
+                    </div>
+                    <a href="https://calendly.com/sachabrouck/free-audit-first-contact" target="_blank" class="gradient-bg text-white px-8 py-4 rounded-md font-medium hover:opacity-90 transition text-lg inline-block" data-lang-key="request-audit-cta">
+                        Demander un audit gratuit
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- À Propos Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold text-center mb-6" data-lang-key="about-title">
+                    Notre Équipe
+                </h2>
+                <p class="text-xl text-gray-400 text-center mb-12" data-lang-key="about-subtitle">
+                    À la croisée du business et de la tech.
+                </p>
+                
+                <p class="text-lg text-center text-gray-300 leading-relaxed" data-lang-key="about-conclusion">
+                    MOSAIC est un cabinet de conseil fondé par des ingénieurs et des stratèges business, avec une expertise concrète en automatisation, systèmes de données et performance opérationnelle. Nous transformons des problèmes complexes en solutions scalables, sécurisées et à fort impact.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16" data-lang-key="faq-title">
+                Questions fréquentes
+            </h2>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
+                <!-- Question 1 -->
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+                    <button class="faq-question flex justify-between items-center w-full text-left">
+                        <h3 class="text-xl font-bold" data-lang-key="coding-skills">Dois-je savoir coder ?</h3>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer mt-4 hidden">
+                        <p class="text-gray-400" data-lang-key="coding-skills-answer">
+                            Non, tout est clé-en-main. Nos solutions sont conçues pour être utilisées sans aucune connaissance technique. Nous nous chargeons de toute l'implémentation et vous formons si nécessaire.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Question 2 -->
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+                    <button class="faq-question flex justify-between items-center w-full text-left">
+                        <h3 class="text-xl font-bold" data-lang-key="data-secure">Mes données sont-elles protégées ?</h3>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer mt-4 hidden">
+                        <p class="text-gray-400" data-lang-key="data-secure-answer">
+                            Oui. Nous proposons soit un hébergement sécurisé avec chiffrement de bout en bout, soit une installation sur votre propre infrastructure si vous préférez garder le contrôle total de vos données.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Question 3 -->
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+                    <button class="faq-question flex justify-between items-center w-full text-left">
+                        <h3 class="text-xl font-bold" data-lang-key="use-gpt">Utilisez-vous GPT ?</h3>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer mt-4 hidden">
+                        <p class="text-gray-400" data-lang-key="use-gpt-answer">
+                            Oui, quand cela crée de la valeur business. Nous utilisons les technologies d'IA les plus avancées (dont GPT) uniquement lorsqu'elles apportent un bénéfice concret à votre activité, jamais de manière systématique.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Question 4 -->
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+                    <button class="faq-question flex justify-between items-center w-full text-left">
+                        <h3 class="text-xl font-bold" data-lang-key="roi-timeline-faq">Combien de temps avant un ROI ?</h3>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer mt-4 hidden">
+                        <p class="text-gray-400" data-lang-key="roi-timeline-answer">
+                            Généralement entre 10 et 21 jours. La plupart de nos clients constatent des économies de temps et d'argent dès les premières semaines d'utilisation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-6" data-lang-key="contact-title">
+                Passez à l'étape suivante.
+            </h2>
+            <p class="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto" data-lang-key="contact-subtitle">
+                Réservez un appel de 30 minutes avec un expert MOSAIC pour identifier les solutions les plus rentables pour votre entreprise.
+            </p>
+            
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6" data-lang-key="request-audit">Demander un audit de sécurité</h3>
+                    <p class="text-gray-400 mb-6" data-lang-key="request-audit-desc">
+                        Réservez un appel de 30 minutes avec un de nos experts pour analyser vos processus et identifier les meilleures opportunités d'automation tout en assurant la sécurité des données.
+                    </p>
+                    <a href="https://calendly.com/sachabrouck/free-audit-first-contact" target="_blank" class="gradient-bg text-white px-6 py-3 rounded-md font-medium hover:opacity-90 transition inline-block" data-lang-key="schedule-call">
+                        <i class="fas fa-calendar-alt mr-2"></i> Prendre rendez-vous
+                    </a>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-6" data-lang-key="contact-us">Nous contacter</h3>
+                    <form action="https://formspree.io/f/meokbajk" method="POST" id="contact-form" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-gray-400 mb-2" data-lang-key="name">Nom</label>
+                            <input type="text" id="name" name="name" required class="w-full bg-gray-900 border border-gray-800 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-400 mb-2" data-lang-key="email">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full bg-gray-900 border border-gray-800 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-400 mb-2" data-lang-key="message">Message</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full bg-gray-900 border border-gray-800 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+                        </div>
+                        <button type="submit" class="gradient-bg text-white px-6 py-3 rounded-md font-medium hover:opacity-90 transition w-full" data-lang-key="send-message">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                    <img src="assets/images/mosaiclogo_transparent.png" alt="MOSAIC Logo" class="h-8 w-auto">
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fas fa-file-alt"></i> <span class="ml-1" data-lang-key="legal-notice">Mentions légales</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Language management
+        let currentLanguage = 'fr';
+        
+        const translations = {
+            fr: {
+                // Hero Section
+                'hero-title-1': 'Automatisez.',
+                'hero-title-2': 'Optimisez.',
+                'hero-title-3': 'Scalez.',
+                'hero-subtitle': 'Nous déployons des solutions d\'automation sûres et scalables, conçues pour booster vos opérations internes. Vos données restent confidentielles. Votre efficacité devient exponentielle.',
+                'hero-cta-1': 'Audit gratuit',
+                'hero-cta-2': 'Voir nos cas clients',
+                
+                // Pricing Section
+                'pricing-title': 'Des solutions sur mesure, un tarif personnalisé.',
+                'pricing-subtitle': 'Chaque entreprise est unique. Nos tarifs sont entièrement adaptés à vos objectifs, votre infrastructure et vos besoins en automatisation. Demandez un audit gratuit pour recevoir une proposition personnalisée.',
+                'custom-solutions': 'Solutions personnalisées',
+                'custom-solutions-desc': 'Nous analysons vos processus, identifions les opportunités d\'automation et concevons une solution sur mesure qui s\'intègre parfaitement à votre écosystème existant.',
+                'audit-phase': 'Phase d\'audit',
+                'audit-phase-desc': 'Analyse approfondie de vos processus et identification des leviers d\'optimisation',
+                'proposal-phase': 'Proposition',
+                'proposal-phase-desc': 'Solution personnalisée avec planning de déploiement et estimation des gains',
+                'deployment-phase': 'Déploiement',
+                'deployment-phase-desc': 'Implémentation progressive avec support et formation de vos équipes',
+                'request-audit-cta': 'Demander un audit gratuit',
+                
+                // ROI Section
+                'roi-title': 'Impact mesurable dès le premier jour.',
+                'time-saved': 'Temps économisé',
+                'time-saved-desc': 'Jusqu\'à 14 heures économisées par semaine et par équipe.',
+                'roi-timeline': 'Timeline ROI',
+                'roi-timeline-desc': 'Moins de 21 jours avant rentabilité (ROI).',
+                'efficiency-gain': 'Gain d\'efficacité',
+                'efficiency-gain-desc': '+22 % d\'efficacité opérationnelle en moyenne.',
+                'automated-actions': 'Actions automatisées',
+                'automated-actions-desc': 'Plus de 6000 actions exécutées automatiquement chaque jour.',
+                
+                // Services Section
+                'services-title': 'Des solutions pour chaque besoin.',
+                'services-subtitle': 'Nous concevons des solutions sécurisées et évolutives qui s\'intègrent parfaitement à votre infrastructure existante.',
+                'process-automation': 'Automatisation des processus',
+                'process-automation-desc': 'CRM, RH, finance… nous boostons la productivité de vos équipes.',
+                'custom-ai-agents': 'Agents IA personnalisés',
+                'custom-ai-agents-desc': 'IA + vos données internes = assistant intelligent.',
+                'auto-reporting': 'Rapports automatiques',
+                'auto-reporting-desc': 'Tableaux de bord KPI en PDF, Notion, Power BI—livrés automatiquement aux parties prenantes.',
+                'api-integration': 'Intégration API',
+                'api-integration-desc': 'Stripe, Notion, Slack, LinkedIn, Zapier, Webhooks—tout connecté de manière sécurisée.',
+                
+                // Case Studies Section
+                'case-studies-title': 'Des entreprises ambitieuses nous font confiance.',
+                'case-studies-subtitle': 'Notre approche s\'adapte à chaque métier : finance, RH, ventes, opérations... Avec une même promesse : gain de temps, visibilité, performance.',
+                'email-automation': 'Email Automation & CRM Integration',
+                'email-automation-desc': 'Complete email automation and intelligent data extraction via CRM.',
+                'hr-data-scraping': 'HR Data Scraping & Analytics',
+                'hr-data-scraping-desc': 'Web scraping automation for HR data collection and competitive intelligence.',
+                'financial-api': 'Financial API & Real-time Analytics',
+                'financial-api-desc': 'Financial data automation and internal API creation for real-time analysis.',
+                'automated-sales': 'Automated Sales Strategy & Lead Gen',
+                'automated-sales-desc': 'Complete sales strategy automation with lead generation and qualification.',
+                'hours-saved': 'heures économisées par semaine',
+                'automated-monitoring': 'surveillance automatisée',
+                'report-automation': 'automatisation des rapports',
+                'more-qualified-leads': 'plus de leads qualifiés',
+                'domains-title': 'Tous les secteurs, une expertise commune.',
+                'finance': 'Finance',
+                'finance-desc': 'Reporting automatisé<br>APIs temps réel<br>Analytics prédictives',
+                'human-resources': 'Ressources Humaines',
+                'human-resources-desc': 'Recrutement automatisé<br>Intelligence concurrentielle<br>Process RH optimisés',
+                'sales': 'Sales',
+                'sales-desc': 'CRM intelligent<br>Lead generation<br>Sales automatisées',
+                'operations': 'Opérations',
+                'operations-desc': 'Workflows automatisés<br>Process optimisés<br>Efficacité maximale',
+                
+                // Methodology Section
+                'methodology-title': 'Une méthodologie en 4 étapes. Rapide. Mesurable. Sécurisée.',
+                'methodology-subtitle': 'Une approche structurée pour des résultats rapides et mesurables avec une sécurité enterprise-grade.',
+                'free-audit': 'Audit gratuit',
+                'free-audit-desc': '30 minutes pour identifier vos meilleurs leviers d\'automation.',
+                'process-mapping': 'Cartographie des processus',
+                'process-mapping-desc': 'Diagnostic de vos workflows pour cibler les automatisations pertinentes.',
+                'development-testing': 'Développement & Tests',
+                'development-testing-desc': 'Conception sur mesure, livrée en collaboration continue.',
+                'deployment-support': 'Déploiement & Support',
+                'deployment-support-desc': 'Mise en production, support et transfert de compétences.',
+                
+                // Pricing Section
+                'pricing-title': 'Des solutions sur mesure, un tarif personnalisé.',
+                'pricing-subtitle': 'Chaque entreprise est unique. Nos tarifs sont entièrement adaptés à vos objectifs, votre infrastructure et vos besoins en automatisation. Demandez un audit gratuit pour recevoir une proposition personnalisée.',
+                'custom-solutions': 'Solutions personnalisées',
+                'custom-solutions-desc': 'Nous analysons vos processus, identifions les opportunités d\'automation et concevons une solution sur mesure qui s\'intègre parfaitement à votre écosystème existant.',
+                'audit-phase': 'Phase d\'audit',
+                'audit-phase-desc': 'Analyse approfondie de vos processus et identification des leviers d\'optimisation',
+                'proposal-phase': 'Proposition',
+                'proposal-phase-desc': 'Solution personnalisée avec planning de déploiement et estimation des gains',
+                'deployment-phase': 'Déploiement',
+                'deployment-phase-desc': 'Implémentation progressive avec support et formation de vos équipes',
+                'request-audit-cta': 'Demander un audit gratuit',
+                
+                // About Section
+                'about-title': 'Notre Équipe',
+                'about-subtitle': 'À la croisée du business et de la tech.',
+                'about-conclusion': 'MOSAIC est un cabinet de conseil fondé par des ingénieurs et des stratèges business, avec une expertise concrète en automatisation, systèmes de données et performance opérationnelle. Nous transformons des problèmes complexes en solutions scalables, sécurisées et à fort impact.',
+                
+                // FAQ Section
+                'faq-title': 'Questions fréquentes',
+                'coding-skills': 'Dois-je savoir coder ?',
+                'coding-skills-answer': 'Non, tout est clé-en-main. Nos solutions sont conçues pour être utilisées sans aucune connaissance technique. Nous nous chargeons de toute l\'implémentation et vous formons si nécessaire.',
+                'data-secure': 'Mes données sont-elles protégées ?',
+                'data-secure-answer': 'Oui. Nous proposons soit un hébergement sécurisé avec chiffrement de bout en bout, soit une installation sur votre propre infrastructure si vous préférez garder le contrôle total de vos données.',
+                'use-gpt': 'Utilisez-vous GPT ?',
+                'use-gpt-answer': 'Oui, quand cela crée de la valeur business. Nous utilisons les technologies d\'IA les plus avancées (dont GPT) uniquement lorsqu\'elles apportent un bénéfice concret à votre activité, jamais de manière systématique.',
+                'roi-timeline-faq': 'Combien de temps avant un ROI ?',
+                'roi-timeline-answer': 'Généralement entre 10 et 21 jours. La plupart de nos clients constatent des économies de temps et d\'argent dès les premières semaines d\'utilisation.',
+                
+                // Contact Section
+                'contact-title': 'Passez à l\'étape suivante.',
+                'contact-subtitle': 'Réservez un appel de 30 minutes avec un expert MOSAIC pour identifier les solutions les plus rentables pour votre entreprise.',
+                'request-audit': 'Demander un audit gratuit',
+                'request-audit-desc': 'Réservez un appel de 30 minutes avec un de nos experts pour analyser vos processus et identifier les meilleures opportunités d\'automation tout en assurant la sécurité des données.',
+                'contact-us': 'Nous contacter',
+                'name': 'Nom',
+                'email': 'Email',
+                'message': 'Message',
+                'send-message': 'Envoyer le message',
+                'legal-notice': 'Mentions légales',
+                
+                // Navigation
+                'services': 'Services',
+                'case-studies': 'Cas clients',
+                'methodology': 'Méthodologie',
+                'pricing': 'Offres',
+                'contact': 'Contact',
+                'free-audit-nav': 'Audit gratuit'
+            },
+            en: {
+                // Hero Section
+                'hero-title-1': 'Automate.',
+                'hero-title-2': 'Optimize.',
+                'hero-title-3': 'Scale.',
+                'hero-subtitle': 'We deploy secure and scalable automation solutions designed to boost your internal operations. Your data remains confidential. Your efficiency becomes exponential.',
+                'hero-cta-1': 'Free Audit',
+                'hero-cta-2': 'View our case studies',
+                
+                // Pricing Section
+                'pricing-title': 'Tailored solutions, custom pricing.',
+                'pricing-subtitle': 'Every business is unique. Our pricing is fully customized based on your goals, infrastructure, and automation needs. Request a free audit to receive a proposal tailored to your operations.',
+                'custom-solutions': 'Custom Solutions',
+                'custom-solutions-desc': 'We analyze your processes, identify automation opportunities, and design a tailored solution that integrates seamlessly with your existing ecosystem.',
+                'audit-phase': 'Audit Phase',
+                'audit-phase-desc': 'In-depth analysis of your processes and identification of optimization levers',
+                'proposal-phase': 'Proposal',
+                'proposal-phase-desc': 'Custom solution with deployment timeline and ROI estimation',
+                'deployment-phase': 'Deployment',
+                'deployment-phase-desc': 'Progressive implementation with support and team training',
+                'request-audit-cta': 'Request Free Audit',
+                
+                // ROI Section
+                'roi-title': 'Measurable impact from day one.',
+                'time-saved': 'Time Saved',
+                'time-saved-desc': 'Up to 14 hours saved per week per team.',
+                'roi-timeline': 'ROI Timeline',
+                'roi-timeline-desc': 'Less than 21 days to profitability (ROI).',
+                'efficiency-gain': 'Efficiency Gain',
+                'efficiency-gain-desc': '+22% operational efficiency on average.',
+                'automated-actions': 'Automated Actions',
+                'automated-actions-desc': 'Over 6000 actions executed automatically each day.',
+                
+                // Services Section
+                'services-title': 'Solutions for every need.',
+                'services-subtitle': 'We design secure and scalable solutions that integrate seamlessly with your existing infrastructure.',
+                'process-automation': 'Process Automation',
+                'process-automation-desc': 'CRM, HR, finance… we boost your team productivity.',
+                'custom-ai-agents': 'Custom AI Agents',
+                'custom-ai-agents-desc': 'AI + your internal data = intelligent assistant.',
+                'auto-reporting': 'Auto Reporting',
+                'auto-reporting-desc': 'Automatically deliver KPI dashboards via PDF, Notion, Power BI.',
+                'api-integration': 'API Integration',
+                'api-integration-desc': 'Stripe, Notion, Slack, LinkedIn, Zapier, Webhooks—all connected securely.',
+                
+                // Case Studies Section
+                'case-studies-title': 'Ambitious companies trust us.',
+                'case-studies-subtitle': 'Our approach adapts to every industry: finance, HR, sales, operations... With the same promise: time savings, visibility, performance.',
+                'email-automation': 'Email Automation & CRM Integration',
+                'email-automation-desc': 'Complete email automation and intelligent data extraction via CRM.',
+                'hr-data-scraping': 'HR Data Scraping & Analytics',
+                'hr-data-scraping-desc': 'Web scraping automation for HR data collection and competitive intelligence.',
+                'financial-api': 'Financial API & Real-time Analytics',
+                'financial-api-desc': 'Financial data automation and internal API creation for real-time analysis.',
+                'automated-sales': 'Automated Sales Strategy & Lead Gen',
+                'automated-sales-desc': 'Complete sales strategy automation with lead generation and qualification.',
+                'hours-saved': 'hours saved per week',
+                'automated-monitoring': 'automated monitoring',
+                'report-automation': 'report automation',
+                'more-qualified-leads': 'more qualified leads',
+                'domains-title': 'All sectors, common expertise.',
+                'finance': 'Finance',
+                'finance-desc': 'Automated reporting<br>Real-time APIs<br>Predictive analytics',
+                'human-resources': 'Human Resources',
+                'human-resources-desc': 'Automated recruitment<br>Competitive intelligence<br>Optimized HR processes',
+                'sales': 'Sales',
+                'sales-desc': 'Intelligent CRM<br>Lead generation<br>Automated sales',
+                'operations': 'Operations',
+                'operations-desc': 'Automated workflows<br>Optimized processes<br>Maximum efficiency',
+                
+                // Methodology Section
+                'methodology-title': 'A 4-step methodology. Fast. Measurable. Secure.',
+                'methodology-subtitle': 'A structured approach for fast and measurable results with enterprise-grade security.',
+                'free-audit': 'Free Audit',
+                'free-audit-desc': '30 minutes to identify your best automation levers.',
+                'process-mapping': 'Process Mapping',
+                'process-mapping-desc': 'Diagnosis of your workflows to target relevant automations.',
+                'development-testing': 'Development & Testing',
+                'development-testing-desc': 'Custom design, delivered in continuous collaboration.',
+                'deployment-support': 'Deployment & Support',
+                'deployment-support-desc': 'Production deployment, support and knowledge transfer.',
+                
+                // About Section
+                'about-title': 'Our Team',
+                'about-subtitle': 'At the crossroads of business and tech.',
+                'about-conclusion': 'MOSAIC is a consulting firm built by engineers and business strategists with hands-on expertise in automation, data systems, and operational excellence. We turn complex problems into scalable, secure, high-impact solutions.',
+                
+                // FAQ Section
+                'faq-title': 'Frequently Asked Questions',
+                'coding-skills': 'Do I need to know how to code?',
+                'coding-skills-answer': 'No, everything is turnkey. Our solutions are designed to be used without any technical knowledge. We handle all implementation and train you if necessary.',
+                'data-secure': 'Is my data protected?',
+                'data-secure-answer': 'Yes. We offer either secure hosting with end-to-end encryption, or installation on your own infrastructure if you prefer to maintain total control of your data.',
+                'use-gpt': 'Do you use GPT?',
+                'use-gpt-answer': 'Yes, when it creates business value. We use the most advanced AI technologies (including GPT) only when they bring concrete benefits to your business, never systematically.',
+                'roi-timeline-faq': 'How long before ROI?',
+                'roi-timeline-answer': 'Generally between 10 and 21 days. Most of our clients see time and money savings from the first weeks of use.',
+                
+                // Contact Section
+                'contact-title': 'Take the next step.',
+                'contact-subtitle': 'Book a 30-minute call with a MOSAIC expert to identify the most profitable solutions for your business.',
+                'request-audit': 'Request Free Audit',
+                'request-audit-desc': 'Book a 30-minute call with one of our experts to analyze your processes and identify the best automation opportunities while ensuring data security.',
+                'contact-us': 'Contact Us',
+                'name': 'Name',
+                'email': 'Email',
+                'message': 'Message',
+                'send-message': 'Send Message',
+                'legal-notice': 'Legal Notice',
+                
+                // Navigation
+                'services': 'Services',
+                'case-studies': 'Case Studies',
+                'methodology': 'Methodology',
+                'pricing': 'Pricing',
+                'contact': 'Contact',
+                'free-audit-nav': 'Free Audit'
+            }
+        };
+        
+        function updateLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update flag and language indicator
+            const flagElement = document.getElementById('current-flag');
+            const langElement = document.getElementById('current-lang');
+            
+            if (lang === 'fr') {
+                flagElement.textContent = '🇫🇷';
+                langElement.textContent = 'FR';
+            } else {
+                flagElement.textContent = '🇺🇸🇬🇧';
+                langElement.textContent = 'EN';
+            }
+            
+            // Update all elements with data-lang attributes
+            document.querySelectorAll('[data-lang-fr][data-lang-en]').forEach(element => {
+                const frText = element.getAttribute('data-lang-fr');
+                const enText = element.getAttribute('data-lang-en');
+                element.textContent = lang === 'fr' ? frText : enText;
+            });
+            
+            // Update all elements with data-lang-key attributes
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+        }
+        
+        // Language switch button
+        document.getElementById('language-switch').addEventListener('click', function() {
+            const newLang = currentLanguage === 'fr' ? 'en' : 'fr';
+            updateLanguage(newLang);
+        });
+        
+        // Initialize language
+        updateLanguage('fr');
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('transform');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Form submission with Formspree
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            
+            // Show loading state
+            submitButton.innerHTML = currentLanguage === 'fr' ? 'Envoi en cours...' : 'Sending...';
+            submitButton.disabled = true;
+            
+            fetch('https://formspree.io/f/meokbajk', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Success message
+                    const successMessage = currentLanguage === 'fr' 
+                        ? 'Merci pour votre message ! Nous vous contacterons rapidement.' 
+                        : 'Thank you for your message! We will contact you soon.';
+                    alert(successMessage);
+                    this.reset();
+                } else {
+                    // Error message
+                    const errorMessage = currentLanguage === 'fr' 
+                        ? 'Une erreur est survenue. Veuillez réessayer.' 
+                        : 'An error occurred. Please try again.';
+                    alert(errorMessage);
+                }
+            })
+            .catch(error => {
+                // Network error message
+                const errorMessage = currentLanguage === 'fr' 
+                    ? 'Une erreur de connexion est survenue. Veuillez réessayer.' 
+                    : 'A connection error occurred. Please try again.';
+                alert(errorMessage);
+            })
+            .finally(() => {
+                // Reset button state
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            });
+        });
+
+        // Counter animation
+        function animateCounter(elementId, target, duration = 2000) {
+            const element = document.getElementById(elementId);
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                if (element) {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for counter animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter('hours-saved', 14);
+                    animateCounter('roi-days', 21);
+                    animateCounter('efficiency', 22);
+                    animateCounter('automations', 6000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const counterSection = document.getElementById('hours-saved');
+        if(counterSection) {
+            observer.observe(counterSection.parentElement.parentElement.parentElement);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
